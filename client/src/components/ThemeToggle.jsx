@@ -4,7 +4,7 @@ import {
     BsFillMoonFill,
 } from "react-icons/bs";
 import Wrapper from "../assets/wrappers/ThemeToggle";
-import { useDashboardContext } from "../pages/DashboardLayout";
+import { useDashboardContext } from "../pages/DashBoardLayout";
 
 const ThemeToggle = () => {
     const { isDarkTheme, toggleDarkTheme } =

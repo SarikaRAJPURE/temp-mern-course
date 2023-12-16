@@ -3,7 +3,7 @@ import Wrapper from '../assets/wrappers/SmallSidebar'
 import { FaTimes } from 'react-icons/fa';
 import Logo from './Logo';
 import NavLinks from './NavLinks';
-import { useDashboardContext } from '../pages/DashboardLayout';
+import { useDashboardContext } from '../pages/DashBoardLayout';
 const SmallSidebar = () => {
     const { showSidebar, toggleSidebar } = useDashboardContext();
     return (
