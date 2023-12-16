@@ -6648,7 +6648,10 @@ app.get("*", (req, res) => {
   -delete .git folder using rm -r -fo .git
   -recreate repo using git init
   - add all the files with git add
-  -commit all  with message 
+    -commit all with message git commit -m "first commit"
+  - git remote add origin https://github.com/SarikaRAJPURE/temp-mern-course.git
+    git branch -M main
+    git push -u origin main
 
 #### Build Front-End on Render
 
