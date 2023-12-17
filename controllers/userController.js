@@ -2,7 +2,8 @@ import { StatusCodes } from "http-status-codes";
 import User from "../models/userModel.js";
 import Job from "../models/jobModel.js";
 import cloudinary from "cloudinary";
-import { promises as fs } from "fs";
+//import { promises as fs } from "fs";
+import { formatImage } from "../middleware/multerMiddleware.js";
 
 export const getCurrentUser = async (req, res) => {
   const user = await User.findOne({
@@ -34,13 +35,14 @@ export const updateUser = async (req, res) => {
   //multer gets all inside form data and converts it into req.body
 
   if (req.file) {
+    const file = formatImage(req.file);
     const response = await cloudinary.v2.uploader.upload(
-      req.file.path
+      file
     );
     //before we save file in db remove that file from public folder
-    await fs.unlink(req.file.path);
-    newUser.avatar = response.secure_url;//will use this to display image on frontend 
-    newUser.avatarPublicId = response.public_id;// will use this to remove old image file
+    //await fs.unlink(req.file.path);
+    newUser.avatar = response.secure_url; //will use this to display image on frontend
+    newUser.avatarPublicId = response.public_id; // will use this to remove old image file
   }
 
   //updated user has old instance of user
