@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext } from 'react'
-import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData, useNavigate, useNavigation } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/Dashboard'
-import { SmallSidebar, BigSidebar, Navbar } from "../components"
+import { SmallSidebar, BigSidebar, Navbar, Loading } from "../components"
 import { checkDefaultTheme } from '../App'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
@@ -23,6 +23,8 @@ const DashBoardLayout = () => {
     //const  data  = useLoaderData();
     const { user } = useLoaderData();
     const navigate = useNavigate();
+    const navigation = useNavigation();
+    const isPageLoading = navigation.state === "loading";
     console.log(user);
     //console.log(checkDefaultTheme());
     //temp
@@ -63,7 +65,7 @@ const DashBoardLayout = () => {
                         <Navbar />
                         <div className="dashboard-page">
                             {/* pass user object to all components inside outlet */}
-                            <Outlet context={{ user }} />
+                            {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
                         </div>
                     </div>
                 </main>
